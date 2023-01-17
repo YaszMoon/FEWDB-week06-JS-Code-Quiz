@@ -12,11 +12,22 @@ var questionDiv = document.querySelector("#questions")
 var startQuiz = document.querySelector("#start")
 var questionTitle = document.querySelector("#question-title")
 var questionOptions = document.querySelector("#choices")
+var optionsList = document.createElement("ol");
+var optionsItem = document.createElement("li");
 
 startQuiz.addEventListener("click", function(event) {
     startScreen.setAttribute("class", "hide");
     questionDiv.setAttribute("class", "show");
     questionTitle.textContent = questions.questions[0];
-    questionOptions.textContent = questions.options[0]
+
+    
+
+    for (var i=0; i < questions.options[0].length; i++) {
+        optionsItem.textContent = questions.options[0][i];
+        optionsList.append(optionsItem);
+        console.log(optionsItem);
+    }
+    
+    questionOptions.append(optionsList)
 })
 
