@@ -2,11 +2,23 @@
 // Begins when person clicks start quiz
 // counts down from ??
 
-// Start Quiz
-// Display first question
-// Loop through questions by going to next when an answer is selected
-// If ... then i+1
+var timerEl = document.getElementById("time");
+var endScreen = document.getElementById("end-screen");
 
+function countdown() {
+  var timeLeft = 90;
+  var timeInterval = setInterval(function () {
+    timeLeft--;
+    timerEl.textContent = `${timeLeft}`;
+    if (timeLeft === 0 || questionNumber == Object.keys(questions).length) {
+      clearInterval(timeInterval);
+      questionDiv.setAttribute("class", "hide");
+      endScreen.setAttribute("class", "show");
+    }
+  }, 1000);
+}
+
+// Start Quiz
 // Variables for Start Quiz Event Listener
 var startScreen = document.querySelector("#start-screen");
 var questionDiv = document.querySelector("#questions");
@@ -19,6 +31,8 @@ startQuiz.addEventListener("click", function (event) {
   questionDiv.setAttribute("class", "show");
 
   displayQuestion();
+
+  countdown();
 });
 
 // Quiz
@@ -57,6 +71,7 @@ optionsList.addEventListener("click", function (event) {
   optionsList.innerHTML = "";
   // Change question
   questionNumber += 1;
+
   // Display question
   displayQuestion();
 });
