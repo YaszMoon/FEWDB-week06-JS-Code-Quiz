@@ -7,28 +7,40 @@
 // Loop through questions by going to next when an answer is selected
 // If ... then i+1
 
-var startScreen = document.querySelector("#start-screen")
-var questionDiv = document.querySelector("#questions")
-var startQuiz = document.querySelector("#start")
-var questionTitle = document.querySelector("#question-title")
-var questionOptions = document.querySelector("#choices")
-var optionsList = document.createElement("ol");
+// Variables for Start Quiz Event Listener
+var startScreen = document.querySelector("#start-screen");
+var questionDiv = document.querySelector("#questions");
+var startQuiz = document.querySelector("#start");
 
 // Event Listener for Start Quiz button
 // Changes view to first question in bank
-startQuiz.addEventListener("click", function(event) {
-    startScreen.setAttribute("class", "hide");
-    questionDiv.setAttribute("class", "show");
-    questionTitle.textContent = questions.questions[0];
+startQuiz.addEventListener("click", function (event) {
+  startScreen.setAttribute("class", "hide");
+  questionDiv.setAttribute("class", "show");
+});
 
-    // For loop to populate options to list
-    for (var i=0; i < questions.options[0].length; i++) {
-        var optionsItem = document.createElement("button");
-        optionsItem.textContent = questions.options[0][i];
-        optionsList.append(optionsItem)
-    }
+// Quiz
+// Variables for Quiz
+var questionTitle = document.querySelector("#question-title");
+var questionOptions = document.querySelector("#choices");
+var optionsList = document.createElement("ol");
+var questionNumber = 0
 
-    // Adds list to Options div so it displays
-    questionOptions.append(optionsList)
-})
+questionTitle.textContent = questions.questions[questionNumber];
 
+// For loop to populate options to list
+for (var i = 0; i < questions.options[questionNumber].length; i++) {
+  var optionsItem = document.createElement("button");
+  optionsItem.setAttribute("class", "options-button")
+  optionsItem.textContent = questions.options[questionNumber][i];
+  optionsList.append(optionsItem);
+}
+
+// Adds list to Options div so it displays
+questionOptions.append(optionsList);
+
+// Quiz Answers Event Listener
+// questionOptions.addEventListener('submit', function(event) {
+//     questionNumber += 1
+//     console.log("here")
+// })
