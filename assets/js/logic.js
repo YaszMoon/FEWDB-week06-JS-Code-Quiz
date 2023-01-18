@@ -13,7 +13,7 @@ var questionDiv = document.querySelector("#questions");
 var startQuiz = document.querySelector("#start");
 
 // Event Listener for Start Quiz button
-// Changes view to first question in bank
+// Hides start screen and displays questions
 startQuiz.addEventListener("click", function (event) {
   startScreen.setAttribute("class", "hide");
   questionDiv.setAttribute("class", "show");
@@ -26,19 +26,27 @@ startQuiz.addEventListener("click", function (event) {
 var questionTitle = document.querySelector("#question-title");
 var questionOptions = document.querySelector("#choices");
 var optionsList = document.createElement("ol");
+var questionArr = [
+  questions.q1,
+  questions.q2,
+  questions.q3,
+  questions.q4,
+  questions.q5,
+];
 var questionNumber = 0;
 
 // Function to display questions
 function displayQuestion() {
-  questionTitle.textContent = questions.questions[questionNumber];
+  questionTitle.textContent = questionArr[questionNumber].question;
 
-  // For loop to populate options to list
-  for (var i = 0; i < questions.options[questionNumber].length; i++) {
+  // Assign each option to a button element and append to list
+  for (let key in questionArr[questionNumber].options) {
     var optionsItem = document.createElement("button");
     optionsItem.setAttribute("class", "options-button");
-    optionsItem.textContent = questions.options[questionNumber][i];
+    optionsItem.textContent = questionArr[questionNumber].options[key];
     optionsList.append(optionsItem);
   }
+
   // Adds list to Options div so it displays
   questionOptions.append(optionsList);
 }
