@@ -17,6 +17,8 @@ var startQuiz = document.querySelector("#start");
 startQuiz.addEventListener("click", function (event) {
   startScreen.setAttribute("class", "hide");
   questionDiv.setAttribute("class", "show");
+
+  displayQuestion();
 });
 
 // Quiz
@@ -24,23 +26,38 @@ startQuiz.addEventListener("click", function (event) {
 var questionTitle = document.querySelector("#question-title");
 var questionOptions = document.querySelector("#choices");
 var optionsList = document.createElement("ol");
-var questionNumber = 0
+var questionNumber = 0;
 
-questionTitle.textContent = questions.questions[questionNumber];
+// Function to display questions
+function displayQuestion() {
+  questionTitle.textContent = questions.questions[questionNumber];
 
-// For loop to populate options to list
-for (var i = 0; i < questions.options[questionNumber].length; i++) {
-  var optionsItem = document.createElement("button");
-  optionsItem.setAttribute("class", "options-button")
-  optionsItem.textContent = questions.options[questionNumber][i];
-  optionsList.append(optionsItem);
+  // For loop to populate options to list
+  for (var i = 0; i < questions.options[questionNumber].length; i++) {
+    var optionsItem = document.createElement("button");
+    optionsItem.setAttribute("class", "options-button");
+    optionsItem.textContent = questions.options[questionNumber][i];
+    optionsList.append(optionsItem);
+  }
+  // Adds list to Options div so it displays
+  questionOptions.append(optionsList);
 }
 
-// Adds list to Options div so it displays
-questionOptions.append(optionsList);
+// function to clear options
+function deleteChildren() {
+  var child = optionsList.lastElementChild;
+  while (child) {
+    optionsList.removeChild(child);
+    child = optionsList.lastElementChild;
+  }
+}
 
 // Quiz Answers Event Listener
-// questionOptions.addEventListener('submit', function(event) {
-//     questionNumber += 1
-//     console.log("here")
-// })
+optionsList.addEventListener("click", function (event) {
+  // Clear options
+  deleteChildren();
+  // Change question
+  questionNumber += 1;
+  // Display question
+  displayQuestion();
+});
