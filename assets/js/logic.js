@@ -23,7 +23,7 @@ startQuiz.addEventListener("click", function(event) {
 
     // For loop to populate options to list
     for (var i=0; i < questions.options[0].length; i++) {
-        var optionsItem = document.createElement("li");
+        var optionsItem = document.createElement("button");
         optionsItem.textContent = questions.options[0][i];
         optionsList.append(optionsItem)
     }
