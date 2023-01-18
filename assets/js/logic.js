@@ -43,19 +43,10 @@ function displayQuestion() {
   questionOptions.append(optionsList);
 }
 
-// function to clear options
-function deleteChildren() {
-  var child = optionsList.lastElementChild;
-  while (child) {
-    optionsList.removeChild(child);
-    child = optionsList.lastElementChild;
-  }
-}
-
 // Quiz Answers Event Listener
 optionsList.addEventListener("click", function (event) {
   // Clear options
-  deleteChildren();
+  optionsList.innerHTML = "";
   // Change question
   questionNumber += 1;
   // Display question
