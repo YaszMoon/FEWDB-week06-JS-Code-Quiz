@@ -13,21 +13,22 @@ var startQuiz = document.querySelector("#start")
 var questionTitle = document.querySelector("#question-title")
 var questionOptions = document.querySelector("#choices")
 var optionsList = document.createElement("ol");
-var optionsItem = document.createElement("li");
 
+// Event Listener for Start Quiz button
+// Changes view to first question in bank
 startQuiz.addEventListener("click", function(event) {
     startScreen.setAttribute("class", "hide");
     questionDiv.setAttribute("class", "show");
     questionTitle.textContent = questions.questions[0];
 
-    
-
+    // For loop to populate options to list
     for (var i=0; i < questions.options[0].length; i++) {
+        var optionsItem = document.createElement("li");
         optionsItem.textContent = questions.options[0][i];
-        optionsList.append(optionsItem);
-        console.log(optionsItem);
+        optionsList.append(optionsItem)
     }
-    
+
+    // Adds list to Options div so it displays
     questionOptions.append(optionsList)
 })
 
