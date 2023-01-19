@@ -4,9 +4,9 @@
 
 var timerEl = document.getElementById("time");
 var endScreen = document.getElementById("end-screen");
-
+var timeLeft = 90;
 function countdown() {
-  var timeLeft = 90;
+  
   var timeInterval = setInterval(function () {
     timeLeft--;
     timerEl.textContent = `${timeLeft}`;
@@ -78,6 +78,7 @@ function showFeedback(isAnswerCorrect) {
     feedback.textContent = "Correct!";
   } else {
     feedback.textContent = "Wrong!";
+    timeLeft -= 5;
   }
 // Update score on end screen
 finalScore.textContent = score;
