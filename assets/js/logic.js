@@ -66,18 +66,21 @@ function displayQuestion() {
 
 // Feedback and Score Tracking
 var feedback = document.getElementById("feedback");
-var score = 0
+var finalScore = document.getElementById("final-score");
+var score = 0;
 // Function for Feedback Display
 // Input should be value of data-answer
 function showFeedback(isAnswerCorrect) {
   // Change class for feedback display
   feedback.setAttribute("class", "feedback");
   if (isAnswerCorrect) {
-    score = score + 1;
+    score += 1;
     feedback.textContent = "Correct!";
   } else {
     feedback.textContent = "Wrong!";
   }
+// Update score on end screen
+finalScore.textContent = score;
 }
 
 // Quiz Answers Event Listener
@@ -93,8 +96,3 @@ optionsList.addEventListener("click", function (event) {
     displayQuestion();
   }
 });
-
-// End screen
-var finalScore = document.getElementById("final-score");
-finalScore.textContent = score;
-console.log(score);
