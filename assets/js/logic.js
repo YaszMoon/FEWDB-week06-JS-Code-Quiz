@@ -1,10 +1,9 @@
 // Timer
-// Begins when person clicks start quiz
-// counts down from ??
-
+// Variables for timer
 var timerEl = document.getElementById("time");
 var endScreen = document.getElementById("end-screen");
 var timeLeft = 90;
+// Timer countdown function
 function countdown() {
   var timeInterval = setInterval(function () {
     timeLeft--;
@@ -30,9 +29,9 @@ var startQuiz = document.querySelector("#start");
 startQuiz.addEventListener("click", function (event) {
   startScreen.setAttribute("class", "hide");
   questionDiv.setAttribute("class", "show");
-
+  // Display first question
   displayQuestion();
-
+  // Start countdown
   countdown();
 });
 
@@ -48,7 +47,6 @@ function displayQuestion() {
   if (questionNumber < questions.length) {
     var currentQ = questions[questionNumber];
     questionTitle.textContent = currentQ.question;
-
     // Assign each option to a button element and append to list
     for (let key in currentQ.options) {
       var optionsItem = document.createElement("button");
@@ -57,7 +55,6 @@ function displayQuestion() {
       optionsItem.textContent = currentQ.options[key];
       optionsList.append(optionsItem);
     }
-
     // Adds list to Options div so it displays
     questionOptions.append(optionsList);
   }
@@ -67,8 +64,8 @@ function displayQuestion() {
 var feedback = document.getElementById("feedback");
 var finalScore = document.getElementById("final-score");
 var score = 0;
-var correctAnswer = new Audio("../sfx/correct.wav")
-var wrongAnswer = new Audio("../sfx/incorrect.wav")
+// var correctAnswer = new Audio("../sfx/correct.wav")
+// var wrongAnswer = new Audio("../sfx/incorrect.wav")
 
 // Function for Feedback Display
 // Input should be value of data-answer
@@ -77,11 +74,11 @@ function showFeedback(isAnswerCorrect) {
   feedback.setAttribute("class", "feedback");
   if (isAnswerCorrect) {
     score += 1;
-    correctAnswer.play();
+    // correctAnswer.play();
     feedback.textContent = "Correct!";
   } else {
     feedback.textContent = "Wrong!";
-    wrongAnswer.play();
+    // wrongAnswer.play();
     timeLeft -= 5;
   }
   // Update score on end screen
