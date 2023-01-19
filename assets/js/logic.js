@@ -14,6 +14,7 @@ function countdown() {
       clearInterval(timeInterval);
       questionDiv.setAttribute("class", "hide");
       endScreen.setAttribute("class", "show");
+      timerEl.textContent = "--";
     }
   }, 1000);
 }
@@ -71,7 +72,6 @@ optionsList.addEventListener("click", function (event) {
   optionsList.innerHTML = "";
   // Change question
   questionNumber += 1;
-
   // Display question
   displayQuestion();
 });
