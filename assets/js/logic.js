@@ -6,7 +6,6 @@ var timerEl = document.getElementById("time");
 var endScreen = document.getElementById("end-screen");
 var timeLeft = 90;
 function countdown() {
-  
   var timeInterval = setInterval(function () {
     timeLeft--;
     timerEl.textContent = `${timeLeft}`;
@@ -68,6 +67,9 @@ function displayQuestion() {
 var feedback = document.getElementById("feedback");
 var finalScore = document.getElementById("final-score");
 var score = 0;
+var correctAnswer = new Audio("../sfx/correct.wav")
+var wrongAnswer = new Audio("../sfx/incorrect.wav")
+
 // Function for Feedback Display
 // Input should be value of data-answer
 function showFeedback(isAnswerCorrect) {
@@ -75,13 +77,15 @@ function showFeedback(isAnswerCorrect) {
   feedback.setAttribute("class", "feedback");
   if (isAnswerCorrect) {
     score += 1;
+    correctAnswer.play();
     feedback.textContent = "Correct!";
   } else {
     feedback.textContent = "Wrong!";
+    wrongAnswer.play();
     timeLeft -= 5;
   }
-// Update score on end screen
-finalScore.textContent = score;
+  // Update score on end screen
+  finalScore.textContent = score;
 }
 
 // Quiz Answers Event Listener
