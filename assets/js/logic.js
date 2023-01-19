@@ -96,3 +96,14 @@ optionsList.addEventListener("click", function (event) {
     displayQuestion();
   }
 });
+
+// Save Initials and Score to local storage
+var submitScore = document.querySelector("#submit");
+var userInitials = document.querySelector("#initials");
+
+// Submit Score Event Listener
+submitScore.addEventListener("click", function () {
+  localStorage.setItem("userInitials", userInitials.value);
+  localStorage.setItem("newScore", score);
+  window.location.assign("highscores.html");
+});
