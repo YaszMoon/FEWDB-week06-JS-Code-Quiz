@@ -3,15 +3,13 @@
 
 var submitScore = document.getElementById("submit");
 var highscoreList = document.getElementById("highscores");
-var userInitials = document.getElementById("initials");
+// var userInitials = document.getElementById("initials");
+// var newScore = document.createElement("li");
+// newScore.textContent = `${userInitials.value} - ${runningScore}`;
 
 // Submit Score Event Listener
 submitScore.addEventListener("click", function (event) {
-  var newScore = document.createElement("li");
-  newScore.textContent = `${userInitials.value} - ${runningScore}`;
-  window.location.assign('highscores.html')
-//   highscoreList.append(newScore);
+  window.location.assign("highscores.html");
   endScreen.setAttribute("class", "hide");
   highscoreList.setAttribute("class", "scores");
-  submitScore.setAttribute('onclick', 'highscores.html')
 });

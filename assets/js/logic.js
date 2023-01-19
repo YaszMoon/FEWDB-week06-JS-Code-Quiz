@@ -14,7 +14,7 @@ function countdown() {
       clearInterval(timeInterval);
       questionDiv.setAttribute("class", "hide");
       endScreen.setAttribute("class", "show");
-      feedback.setAttribute('class', "hide");
+      feedback.setAttribute("class", "hide");
       timerEl.textContent = "--";
     }
   }, 1000);
@@ -47,50 +47,54 @@ var questionNumber = 0;
 // Function to display questions
 function displayQuestion() {
   if (questionNumber < questions.length) {
-  var currentQ = questions[questionNumber];
-  questionTitle.textContent = currentQ.question;
+    var currentQ = questions[questionNumber];
+    questionTitle.textContent = currentQ.question;
 
-  // Assign each option to a button element and append to list
-  for (let key in currentQ.options) {
-    var optionsItem = document.createElement("button");
-    optionsItem.setAttribute("class", "options-button");
-    optionsItem.setAttribute("data-answer", key === currentQ.answer);
-    optionsItem.textContent = currentQ.options[key];
-    optionsList.append(optionsItem);
+    // Assign each option to a button element and append to list
+    for (let key in currentQ.options) {
+      var optionsItem = document.createElement("button");
+      optionsItem.setAttribute("class", "options-button");
+      optionsItem.setAttribute("data-answer", key === currentQ.answer);
+      optionsItem.textContent = currentQ.options[key];
+      optionsList.append(optionsItem);
+    }
+
+    // Adds list to Options div so it displays
+    questionOptions.append(optionsList);
   }
-
-  // Adds list to Options div so it displays
-  questionOptions.append(optionsList);}
 }
 
 // Feedback and Score Tracking
-var runningScore = 0;
 var feedback = document.getElementById("feedback");
+var score = 0
 // Function for Feedback Display
+// Input should be value of data-answer
 function showFeedback(isAnswerCorrect) {
-// When option selected
-feedback.setAttribute("class", "feedback");
-if (isAnswerCorrect) {
-  runningScore += 1;
-  feedback.textContent = 'Correct!'
-} else {
-  feedback.textContent = "Wrong!";
-}
+  // Change class for feedback display
+  feedback.setAttribute("class", "feedback");
+  if (isAnswerCorrect) {
+    score = score + 1;
+    feedback.textContent = "Correct!";
+  } else {
+    feedback.textContent = "Wrong!";
+  }
 }
 
 // Quiz Answers Event Listener
 optionsList.addEventListener("click", function (event) {
-if(event.target.className == 'options-button')  {  
-  // Clear options
-  optionsList.innerHTML = "";
-  // Change question
-  questionNumber += 1;
-  // Feedback
-  showFeedback(event.target.dataset.answer === 'true')
-  // Display question
-  displayQuestion();}
+  if (event.target.className == "options-button") {
+    // Clear options
+    optionsList.innerHTML = "";
+    // Change question
+    questionNumber += 1;
+    // Feedback
+    showFeedback(event.target.dataset.answer === "true");
+    // Display question
+    displayQuestion();
+  }
 });
 
 // End screen
 var finalScore = document.getElementById("final-score");
-finalScore.textContent = runningScore;
+finalScore.textContent = score;
+console.log(score);
