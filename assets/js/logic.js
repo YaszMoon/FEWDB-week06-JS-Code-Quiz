@@ -10,10 +10,11 @@ function countdown() {
   var timeInterval = setInterval(function () {
     timeLeft--;
     timerEl.textContent = `${timeLeft}`;
-    if (timeLeft === 0 || questionNumber == Object.keys(questions).length) {
+    if (timeLeft === 0 || questionNumber == questions.length) {
       clearInterval(timeInterval);
       questionDiv.setAttribute("class", "hide");
       endScreen.setAttribute("class", "show");
+      feedback.setAttribute('class', "hide");
       timerEl.textContent = "--";
     }
   }, 1000);
@@ -41,37 +42,55 @@ startQuiz.addEventListener("click", function (event) {
 var questionTitle = document.querySelector("#question-title");
 var questionOptions = document.querySelector("#choices");
 var optionsList = document.createElement("ol");
-var questionArr = [
-  questions.q1,
-  questions.q2,
-  questions.q3,
-  questions.q4,
-  questions.q5,
-];
 var questionNumber = 0;
 
 // Function to display questions
 function displayQuestion() {
-  questionTitle.textContent = questionArr[questionNumber].question;
+  if (questionNumber < questions.length) {
+  var currentQ = questions[questionNumber];
+  questionTitle.textContent = currentQ.question;
 
   // Assign each option to a button element and append to list
-  for (let key in questionArr[questionNumber].options) {
+  for (let key in currentQ.options) {
     var optionsItem = document.createElement("button");
     optionsItem.setAttribute("class", "options-button");
-    optionsItem.textContent = questionArr[questionNumber].options[key];
+    optionsItem.setAttribute("data-answer", key === currentQ.answer);
+    optionsItem.textContent = currentQ.options[key];
     optionsList.append(optionsItem);
   }
 
   // Adds list to Options div so it displays
-  questionOptions.append(optionsList);
+  questionOptions.append(optionsList);}
+}
+
+// Feedback and Score Tracking
+var runningScore = 0;
+var feedback = document.getElementById("feedback");
+// Function for Feedback Display
+function showFeedback(isAnswerCorrect) {
+// When option selected
+feedback.setAttribute("class", "feedback");
+if (isAnswerCorrect) {
+  runningScore += 1;
+  feedback.textContent = 'Correct!'
+} else {
+  feedback.textContent = "Wrong!";
+}
 }
 
 // Quiz Answers Event Listener
 optionsList.addEventListener("click", function (event) {
+if(event.target.className == 'options-button')  {  
   // Clear options
   optionsList.innerHTML = "";
   // Change question
   questionNumber += 1;
+  // Feedback
+  showFeedback(event.target.dataset.answer === 'true')
   // Display question
-  displayQuestion();
+  displayQuestion();}
 });
+
+// End screen
+var finalScore = document.getElementById("final-score");
+finalScore.textContent = runningScore;

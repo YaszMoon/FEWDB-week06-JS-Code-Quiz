@@ -1,8 +1,8 @@
 // Questions source https://www.interviewbit.com/javascript-mcq/
 // Questions object
 
-var questions = {
-  q1: {
+var questions = [
+  {
     question: "Javascript is an _______ language?",
     options: {
       a: "Object-Oriented",
@@ -12,7 +12,7 @@ var questions = {
     },
     answer: "a",
   },
-  q2: {
+  {
     question:
       "Which of the following keywords is used to define a variable in Javascript?",
     options: {
@@ -23,7 +23,7 @@ var questions = {
     },
     answer: "c",
   },
-  q3: {
+  {
     question:
       "Which of the following methods is used to access HTML elements using Javascript?",
     options: {
@@ -34,7 +34,7 @@ var questions = {
     },
     answer: "c",
   },
-  q4: {
+  {
     question:
       "Upon encountering empty statements, what does the Javascript Interpreter do?",
     options: {
@@ -45,7 +45,7 @@ var questions = {
     },
     answer: "b",
   },
-  q5: {
+  {
     question:
       "Which of the following methods can be used to display data in some form using Javascript?",
     options: {
@@ -56,4 +56,4 @@ var questions = {
     },
     answer: "d",
   },
-};
+];
