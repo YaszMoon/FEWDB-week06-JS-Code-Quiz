@@ -4,7 +4,7 @@
 
 This week's challenge was to create a code quiz using javascript.
 
-Visit the deployed page [here](https://yaszmoon.github.io/FEWDB-week06/).
+Visit the deployed page [here](https://github.com/YaszMoon/FEWDB-week06-JS-Code-Quiz).
 
 ## User Story
 
